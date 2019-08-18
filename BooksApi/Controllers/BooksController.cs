@@ -18,37 +18,28 @@ namespace BooksApi.Controllers
             this._bookService = bookService;
         }
 
-        //[HttpGet]
-        //public ActionResult<IEnumerable<string>> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-        // GET: api/Books/1
+        //GET: api/Books/1
         [HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "111";
-        //}
-        public Task<Book> Get(int id)
+        public Task<Book> Get(Guid id)
             => _bookService.GetBookAsync(id);
 
-        // POST: api/Books
-        [HttpPost]
+        //POST: api/Books
+       [HttpPost]
         public async Task<IActionResult> Post([FromBody]Book book)
             => (await _bookService.CreateBookAsync(book))
-                ? (IActionResult)Created($"api/products/{book.Id}", book) // HTTP 201
+                ? (IActionResult)Created($"api/books/{book.Id}", book) // HTTP 201
                 : StatusCode(500); // HTTP 500
 
         // PUT: api/Books/1
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]Book book)
+        public async Task<IActionResult> Put(Guid id, [FromBody]Book book)
             => (await _bookService.UpdateBookAsync(id, book))
                 ? Ok()
                 : StatusCode(500);
 
         // DELETE: api/Books/1
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
             => (await _bookService.DeleteBookAsync(id))
                 ? (IActionResult)Ok()
                 : NoContent();

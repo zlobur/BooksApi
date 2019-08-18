@@ -21,7 +21,7 @@ namespace BooksApi.Services
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<bool> DeleteBookAsync(int id)
+        public async Task<bool> DeleteBookAsync(Guid id)
         {
             var book = await _context.Books.SingleOrDefaultAsync(b => b.Id == id);
             if (book == null)
@@ -33,12 +33,12 @@ namespace BooksApi.Services
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<Book> GetBookAsync(int id)
+        public async Task<Book> GetBookAsync(Guid id)
         {
             return await _context.Books.SingleOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<bool> UpdateBookAsync(int id, Book book)
+        public async Task<bool> UpdateBookAsync(Guid id, Book book)
         {
             _context.Entry(book).State = EntityState.Modified;
             return await _context.SaveChangesAsync() > 0;

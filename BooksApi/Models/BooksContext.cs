@@ -10,15 +10,16 @@ namespace BooksApi.Models
     public class BooksContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
+        public BooksContext(DbContextOptions<BooksContext> options) : base(options) { }
 
-        public BooksContext()
-        {
-            Database.EnsureCreated();
-        }
+        //public BooksContext()
+        //{
+        //    Database.EnsureCreated();
+        //}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=testbookdb;Trusted_Connection=True;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=testbookdb;Trusted_Connection=True;");
+        //}
     }
 }

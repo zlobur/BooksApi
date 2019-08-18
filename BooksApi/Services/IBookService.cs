@@ -9,8 +9,8 @@ namespace BooksApi.Services
     public interface IBookService
     {
         Task<bool> CreateBookAsync(Book book);
-        Task<Book> GetBookAsync(int id);
-        Task<bool> UpdateBookAsync(int id, Book book);
-        Task<bool> DeleteBookAsync(int id);
+        Task<Book> GetBookAsync(Guid id);
+        Task<bool> UpdateBookAsync(Guid id, Book book);
+        Task<bool> DeleteBookAsync(Guid id);
     }
 }
